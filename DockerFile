@@ -1,10 +1,9 @@
-FROM alpine:3.7
+FROM alpine:latest
 
-MAINTAINER Greg Junge
+LABEL MAINTAINER="Greg Junge <gregnuj@gmail.com>"
 
-RUN apk update \
- && apk upgrade \
- && apk add --no-cache \
-            rsync \
-            openssh-client \
- && rm -rf /var/cache/apk/*
+RUN apk --no-cache add bash socat openssh-client rsync
+
+SHELL ["/bin/bash"]
+
+CMD ["rsync"]
